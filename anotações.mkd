@@ -1,0 +1,65 @@
+### Os agentes baseados em conhecimento são compostos de duas partes principais:
+Base de conhecimento e Sistema de inferência.
+
+
+### Motor de inferência
+É um programa que utiliza a base de conhecimento como ‘dado’ na solução de um problema.
+<https://www.inf.ufrgs.br/~engel/data/media/file/inf01048/inferencia.pdf>
+
+### Um agente baseado em conhecimento deve ser capaz de fazer o seguinte:
+
+- Um agente deve ser capaz de representar estados, ações, etc.
+- Um agente deve ser capaz de incorporar novas percepções
+- Um agente pode atualizar a representação interna do mundo
+- Um agente pode deduzir a representação interna do mundo
+- Um agente pode deduzir ações apropriadas.
+
+### Operações realizadas pelo KBA:
+
+- TELL: Esta operação diz à base de conhecimento o que ela percebe do ambiente.
+- ASK: Esta operação pergunta à base de conhecimento qual ação ela deve executar.
+- Perform: Executa a ação selecionada.
+
+```
+function KB-AGENT(percept): // percepção
+static: KB, a knowledge base // base de conhecimento
+          t, a counter, initially 0, indicating time // tempo
+TELL(KB, MAKE-PERCEPT-SENTENCE(percept, t)) // sentença de percepção
+Action = ASK(KB, MAKE-ACTION-QUERY(t))     // criar consulta de ação
+TELL(KB, MAKE-ACTION-SENTENCE(action, t)) // criar sentença de ação
+ t = t + 1  
+ return action   
+```
+
+### Cada vez que a função é chamada, ela executa suas três operações:
+
+1) Em primeiro lugar, ele diz ao KB o que ele percebe do ambiente.
+2) Em segundo lugar, pergunta ao KB que ação deve tomar. Um extenso processo de raciocínio lógico é realizado sobre a base de conhecimento para que sejam decididas as ações que devem ser executadas.
+3) O programa do terceiro agente DIZ ao KB qual ação foi escolhida.
+
+### Encadeamento para frente e para trás
+<https://slideplayer.com.br/slide/2262895/>
+
+### Níveis de agente baseado em conhecimento:
+
+1) Nível de conhecimento: é o primeiro nível do agente baseado em conhecimento e, nesse nível, precisamos especificar o que o agente sabe e quais são os objetivos do agente. Com essas especificações, podemos corrigir seu comportamento. Por exemplo, suponha que um agente de táxi automatizado precise ir de uma estação A para a estação B, e ele sabe o caminho de A para B, então isso vem no nível de conhecimento.
+
+2) Nível lógico: nesse nível, entendemos como a representação do conhecimento é armazenada e as frases são codificadas em diferentes lógicas. No nível lógico, ocorre uma codificação do conhecimento em sentenças lógicas. No exemplo citado anteriormente, podemos esperar que o agente de táxi chegue ao destino B automaticamente.
+
+3) Nível de implementação: esta é a representação física da lógica e do conhecimento. No nível de implementação, o agente realiza ações de acordo com o nível lógico e de conhecimento. No exemplo, um agente de táxi automatizado realmente implementa seu conhecimento e lógica para que possa chegar ao destino.
+
+### Abordagens para projetar um agente baseado em conhecimento:
+
+1. Abordagem declarativa: Podemos criar um agente baseado em conhecimento **inicializando com uma base de conhecimento vazia e informando ao agente todas as frases** com as quais queremos começar. Essa abordagem é chamada de abordagem declarativa.
+
+2. Abordagem procedural: Na abordagem procedural, codificamos diretamente o comportamento desejado como um código de programa. O que significa que só precisamos escrever um programa que já codifique o comportamento ou agente desejado.
+
+### Regras de Produção ("Se condição, então ação"):
+
+1. Conjunto de regras de produção: nas regras de produção, o agente verifica a condição e, se a condição existir, a regra de produção é acionada e a ação correspondente é executada. A parte de condição da regra determina qual regra pode ser aplicada a um problema.
+
+2. Memória de trabalho: contém a descrição do estado atual da resolução de problemas e a regra pode gravar conhecimento na memória de trabalho. Este conhecimento corresponde e pode disparar outras regras.
+
+3. Reconhecimento e ação: executa as etapas de resolução de problemas associadas. Esse processo completo é chamado de ciclo reconhecer-agir.
+
+*Se houver uma nova situação (estado) gerada, várias regras de produção serão disparadas juntas, isso é chamado de conjunto de conflitos. Nessa situação, o agente precisa selecionar uma regra desses conjuntos, e isso é chamado de resolução de conflitos.*
